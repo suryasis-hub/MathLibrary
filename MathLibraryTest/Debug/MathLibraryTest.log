@@ -1,3 +1,0 @@
-﻿  test.cpp
-C:\Users\suryasispaul\source\repos\MathLibrary\MathLibrary\MathLibrary.cpp(14,21): warning C4018: '<=': signed/unsigned mismatch
-  MathLibraryTest.vcxproj -> C:\Users\suryasispaul\source\repos\MathLibrary\Debug\MathLibraryTest.exe
