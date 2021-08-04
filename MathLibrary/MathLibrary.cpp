@@ -15,20 +15,10 @@ namespace Combinatorics
 
 	unsigned long long factorial(unsigned int n) 
 	{
-		if (representableFactors.size() >= (n-1))
+		if (n >= representableFactors.size())
 		{
-			return representableFactors[n];
+			throw std::invalid_argument("The argument is too large");
 		}
-		unsigned long long fact = 1;
-		for (int i = 1; i <= n; i++)
-		{
-			if (fact > ULLONG_MAX / n) 
-			{
-				throw std::invalid_argument("The argument is too large");
-			}
-			fact = fact * i;
-		}
-		return fact;
+		return representableFactors[n];
 	}
-
 }
