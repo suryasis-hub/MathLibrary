@@ -17,8 +17,32 @@ namespace Combinatorics
 	{
 		if (n >= representableFactors.size())
 		{
-			throw std::invalid_argument("The argument is too large");
+			throw std::invalid_argument("Combinatorics:factorial - The argument is too large");
 		}
 		return representableFactors[n];
 	}
+
+	inline unsigned long long gcd(unsigned long long a, unsigned long long b)
+	{
+		if (a % b == 0)
+			return b;
+		return gcd(b, (a % b));
+	}
+
+	unsigned long long combinations(int n, int r)
+	{
+		if (n - r < r)
+			r = n - r;
+		unsigned long long int denominatorProduct = 1, numeratorProduct = 1;
+		for (int denomCount = r, numCount = n ; denomCount >= 1; denomCount--, numCount--)
+		{
+			denominatorProduct = denominatorProduct * denomCount;
+			numeratorProduct = numeratorProduct * numCount;
+			unsigned gcdCommonFactor = gcd(denominatorProduct, numeratorProduct);
+			denominatorProduct /= gcdCommonFactor;
+			numeratorProduct /= gcdCommonFactor;
+		}
+		return (numeratorProduct / denominatorProduct);
+	}
+
 }
