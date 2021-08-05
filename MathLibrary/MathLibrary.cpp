@@ -1,6 +1,5 @@
 // MathLibrary.cpp : Defines the functions for the static library.
 //
-
 #include "pch.h"
 #include "framework.h"
 #include <vector>
@@ -8,7 +7,6 @@
 #include <limits>
 #include <cstddef>
 
-// TODO: This is an example of a library function
 namespace Combinatorics
 {
 	const std::vector<unsigned long long> representableFactors = {1,1,2,6,24,120,720,5040,40320,362880,3628800,39916800,
@@ -53,7 +51,7 @@ namespace Combinatorics
 			//TODO : Convert to limits
 			if((LLONG_MAX / n) < numeratorProduct || (LLONG_MAX / n) < denominatorProduct)
 			{
-				throw std::invalid_argument("Combinatorics::combinations - Overflow detected aborting");
+				throw std::invalid_argument("Combinatorics::combinations - The calculated value is too large, aborting.");
 			}
 			denominatorProduct *= denomCount;
 			numeratorProduct *=  numCount;
@@ -80,7 +78,7 @@ namespace Combinatorics
 			//TODO: Convert to limits
 			if ((LLONG_MAX / n) < permutations)
 			{
-				throw std::invalid_argument("Combinatorics::permutations - Overflow detected aborting");
+				throw std::invalid_argument("Combinatorics::permutations - The calculated value is too large, aborting");
 			}
 			permutations *= numeratorCount;
 		}
