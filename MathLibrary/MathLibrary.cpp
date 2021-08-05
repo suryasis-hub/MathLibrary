@@ -35,7 +35,7 @@ namespace Combinatorics
 	{
 		if (n < 0 || r < 0)
 		{
-			throw std::invalid_argument("Combinatorics::combinations - The value of r cannot be greater than n");
+			throw std::invalid_argument("Combinatorics::combinations - N cannot be less than 0");
 		}
 		if (n < r)
 		{

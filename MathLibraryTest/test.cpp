@@ -28,3 +28,8 @@ TEST(Combinatorial_Combinations, negative_n)
 {
     EXPECT_THROW(Combinatorics::combinations(-5, 5), std::invalid_argument);
 }
+
+TEST(Combinatorial_Combinations, r_greater_than_n)
+{
+    EXPECT_THROW(Combinatorics::combinations(4, 5), std::invalid_argument);
+}
