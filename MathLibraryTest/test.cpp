@@ -38,3 +38,34 @@ TEST(Combinatorial_Combinations, overflow)
 {
     EXPECT_THROW(Combinatorics::combinations(100, 50), std::invalid_argument);
 }
+
+TEST(Combinatorial_Permutations, small_ints)
+{
+    EXPECT_EQ(Combinatorics::permutations(5, 5), 120);
+    EXPECT_EQ(Combinatorics::permutations(5, 0), 1);
+    EXPECT_EQ(Combinatorics::permutations(5, 2), 20);
+    EXPECT_EQ(Combinatorics::permutations(10, 2), 90);
+    EXPECT_EQ(Combinatorics::permutations(40, 3), 59280);
+    EXPECT_EQ(Combinatorics::permutations(40, 7), 93963542400);
+    EXPECT_EQ(Combinatorics::permutations(50, 4), 5527200);
+}
+
+TEST(Combinatorial_Permutations, r_negative)
+{
+    EXPECT_THROW(Combinatorics::permutations(5, -5), std::invalid_argument);
+}
+
+TEST(Combinatorial_Permutations, n_negative)
+{
+    EXPECT_THROW(Combinatorics::permutations(-5, 5), std::invalid_argument);
+}
+
+TEST(Combinatorial_Permutations,r_greater)
+{
+    EXPECT_THROW(Combinatorics::permutations(5, 6), std::invalid_argument);
+}
+
+TEST(Combinatorial_Permutations,overflow)
+{
+    EXPECT_THROW(Combinatorics::permutations(50,46), std::invalid_argument);
+}

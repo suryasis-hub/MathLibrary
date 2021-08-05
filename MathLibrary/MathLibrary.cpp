@@ -36,7 +36,7 @@ namespace Combinatorics
 	{
 		if (n < 0 || r < 0)
 		{
-			throw std::invalid_argument("Combinatorics::combinations - N cannot be less than 0");
+			throw std::invalid_argument("Combinatorics::combinations - N and R cannot be less than 0");
 		}
 		if (n < r)
 		{
@@ -48,7 +48,7 @@ namespace Combinatorics
 		}
 		long long int denominatorProduct = 1;
 		long long int numeratorProduct = 1;
-		for (int denomCount = r, numCount = n ; denomCount >= 1; denomCount--, numCount--)
+		for (long long int denomCount = r, numCount = n ; denomCount >= 1; denomCount--, numCount--)
 		{
 			//TODO : Convert to limits
 			if((LLONG_MAX / n) < numeratorProduct || (LLONG_MAX / n) < denominatorProduct)
@@ -62,5 +62,28 @@ namespace Combinatorics
 			numeratorProduct /= gcdCommonFactor;
 		}
 		return (numeratorProduct / denominatorProduct);
+	}
+
+	long long permutations(int n, int r)
+	{
+		if (n < 0 || r < 0)
+		{
+			throw std::invalid_argument("Combinatorics::permutations - N and R cannot be less than 0");
+		}
+		if (n < r)
+		{
+			throw std::invalid_argument("Combinatorics::permutations - The value of r cannot be greater than n");
+		}
+		long long permutations = 1;
+		for (long long int numeratorCount = n; numeratorCount >= (n - r + 1); numeratorCount--)
+		{
+			//TODO: Convert to limits
+			if ((LLONG_MAX / n) < permutations)
+			{
+				throw std::invalid_argument("Combinatorics::permutations - Overflow detected aborting");
+			}
+			permutations *= numeratorCount;
+		}
+		return permutations;
 	}
 }
