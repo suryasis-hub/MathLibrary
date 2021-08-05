@@ -22,23 +22,36 @@ namespace Combinatorics
 		return representableFactors[n];
 	}
 
-	inline unsigned long long gcd(unsigned long long a, unsigned long long b)
+	inline long long gcd(long long a, long long b)
 	{
 		if (a % b == 0)
+		{
 			return b;
+		}
 		return gcd(b, (a % b));
 	}
 
-	unsigned long long combinations(int n, int r)
+	long long combinations(int n, int r)
 	{
+		if (n < 0 || r < 0)
+		{
+			throw std::invalid_argument("Combinatorics::combinations - The value of r cannot be greater than n");
+		}
+		if (n < r)
+		{
+			throw std::invalid_argument("Combinatorics::combinations - The value of r cannot be greater than n");
+		}
 		if (n - r < r)
+		{
 			r = n - r;
-		unsigned long long int denominatorProduct = 1, numeratorProduct = 1;
+		}
+		long long int denominatorProduct = 1;
+		long long int numeratorProduct = 1;
 		for (int denomCount = r, numCount = n ; denomCount >= 1; denomCount--, numCount--)
 		{
-			denominatorProduct = denominatorProduct * denomCount;
-			numeratorProduct = numeratorProduct * numCount;
-			unsigned gcdCommonFactor = gcd(denominatorProduct, numeratorProduct);
+			denominatorProduct *= denomCount;
+			numeratorProduct *=  numCount;
+			long long gcdCommonFactor = gcd(denominatorProduct, numeratorProduct);
 			denominatorProduct /= gcdCommonFactor;
 			numeratorProduct /= gcdCommonFactor;
 		}

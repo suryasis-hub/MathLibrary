@@ -23,3 +23,8 @@ TEST(Combinatorial_Combinations, small_ints)
     EXPECT_EQ(Combinatorics::combinations(20,10),184756);
     EXPECT_EQ(Combinatorics::combinations(40, 35),658008);
 }
+
+TEST(Combinatorial_Combinations, negative_n)
+{
+    EXPECT_THROW(Combinatorics::combinations(-5, 5), std::invalid_argument);
+}
