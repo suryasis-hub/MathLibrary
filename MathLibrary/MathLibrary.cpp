@@ -5,7 +5,8 @@
 #include "framework.h"
 #include <vector>
 #include <iostream>
-
+#include <limits>
+#include <cstddef>
 
 // TODO: This is an example of a library function
 namespace Combinatorics
@@ -49,6 +50,11 @@ namespace Combinatorics
 		long long int numeratorProduct = 1;
 		for (int denomCount = r, numCount = n ; denomCount >= 1; denomCount--, numCount--)
 		{
+			//TODO : Convert to limits
+			if((LLONG_MAX / n) < numeratorProduct || (LLONG_MAX / n) < denominatorProduct)
+			{
+				throw std::invalid_argument("Combinatorics::combinations - Overflow detected aborting");
+			}
 			denominatorProduct *= denomCount;
 			numeratorProduct *=  numCount;
 			long long gcdCommonFactor = gcd(denominatorProduct, numeratorProduct);
@@ -57,5 +63,4 @@ namespace Combinatorics
 		}
 		return (numeratorProduct / denominatorProduct);
 	}
-
 }
