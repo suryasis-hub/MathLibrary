@@ -1,6 +1,13 @@
 #include "pch.h"
-#include <iostream>
-#include "../MathLibrary/MathLibrary.cpp"
+#include <vector>
+#include "../MathLibrary/Combinatorics.h"
+#include "../MathLibrary/Statistics.h"
+
+void compareDoubles(double a, double b)
+{
+    const double THRESHOLD = 0.01;
+    ASSERT_TRUE(abs(a - b) < THRESHOLD);
+}
 
 TEST(Combinatorial_Factorial, small_ints)
 {
@@ -69,3 +76,28 @@ TEST(Combinatorial_Permutations,overflow)
 {
     EXPECT_THROW(Combinatorics::permutations(50,46), std::invalid_argument);
 }
+
+TEST(Statistics_mean, small_distributions)
+{
+    std::vector<int> testVector = { -2,-1,0,1,2 };
+    EXPECT_EQ(Statistics::average(testVector), 0);
+    std::vector<double> testVectorDouble = {5,5,6,6};
+    compareDoubles(Statistics::average(testVectorDouble), 5.5);
+}
+
+TEST(Statistics_mean, empty_distribution)
+{
+    std::vector<int> testVector;
+    EXPECT_THROW(Statistics::average(testVector), std::invalid_argument);
+}
+
+TEST(Statistics_variance, small_distribution)
+{
+    std::vector<double> testVector = { 0,0 };
+    compareDoubles(Statistics::variance(testVector), 0);
+    std::vector<double> testVector2 = {1,2,3,4};
+    compareDoubles(Statistics::variance(testVector2), 1.25);
+    std::vector<double> testVectorRandom = { 1,2,3,4,6,8,9,34,45,78,89 };
+    compareDoubles(Statistics::variance(testVectorRandom), 938.2314);
+}
+
