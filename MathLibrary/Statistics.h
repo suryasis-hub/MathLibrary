@@ -43,10 +43,6 @@ namespace Statistics
 		}
 		std::unordered_map<T, int> frequencyMap;
 		std::for_each(distributionVector.begin(), distributionVector.end(), [&](T a) { frequencyMap[a]++;  });
-		int maxCount = 0;
-		std::for_each(frequencyMap.begin(), frequencyMap.end(), [&](auto a) { maxCount = std::max(maxCount, a.second); });
-		T answer;
-		std::for_each(frequencyMap.begin(), frequencyMap.end(), [&](auto a) { if (maxCount == a.second) { answer = a.first; } });
-		return answer;
+		return std::max_element(frequencyMap.begin(), frequencyMap.end(),[](auto a, auto b) { return (a.second < b.second); })->first;
 	}
 }
