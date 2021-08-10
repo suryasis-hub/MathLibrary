@@ -101,3 +101,19 @@ TEST(Statistics_variance, small_distribution)
     compareDoubles(Statistics::variance(testVectorRandom), 938.2314);
 }
 
+TEST(Statistics_standarddev, small_distribution)
+{
+    std::vector<double> testVector = { 0,0 };
+    compareDoubles(Statistics::standardDeviation(testVector), 0);
+    std::vector<double> testVector2 = { 1,2,3,4 };
+    compareDoubles(Statistics::standardDeviation(testVector2), 1.11803);
+    std::vector<double> testVectorRandom = { 1,2,3,4,6,8,9,34,45,78,89 };
+    compareDoubles(Statistics::standardDeviation(testVectorRandom), 30.6305);
+}
+
+TEST(Statistics_mode, small_distribution)
+{
+    std::vector<int> testVector = { 32,32, 45, 12,32};
+    EXPECT_EQ(Statistics::mode(testVector), 32);
+}
+
