@@ -31,12 +31,16 @@ namespace Statistics
 	template <typename T>
 	T standardDeviation(const std::vector<T>& distributionVector)
 	{
-		return pow(variance(distributionVector), 0.5);
+		return std::sqrt(variance(distributionVector));
 	}
 
 	template<typename T>
 	T mode(const std::vector<T>& distributionVector)
 	{
+		if (distributionVector.size() == 0)
+		{
+			throw std::invalid_argument("Statistics::mode - The distribution provided is empty.");
+		}
 		std::unordered_map<T, int> frequencyMap;
 		std::for_each(distributionVector.begin(), distributionVector.end(), [&](T a) { frequencyMap[a]++;  });
 		int maxCount = 0;

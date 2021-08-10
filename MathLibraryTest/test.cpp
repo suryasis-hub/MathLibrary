@@ -115,5 +115,14 @@ TEST(Statistics_mode, small_distribution)
 {
     std::vector<int> testVector = { 32,32, 45, 12,32};
     EXPECT_EQ(Statistics::mode(testVector), 32);
+    std::vector<int> testVector1 = { 32,32,32 };
+    EXPECT_EQ(Statistics::mode(testVector1), 32);
+    std::vector<int> testVector2 = {0};
+    EXPECT_EQ(Statistics::mode(testVector2), 0);
 }
 
+TEST(Statistics_mode, empty_distribution)
+{
+    std::vector<int> testVector;
+    EXPECT_THROW(Statistics::mode(testVector), std::invalid_argument);
+}

@@ -18,7 +18,7 @@ namespace Combinatorics
 		{
 			throw std::invalid_argument("Combinatorics:factorial - The argument is too large");
 		}
-		return representableFactors[n];
+		return representableFactors.at(n);
 	}
 
 	inline long long gcd(long long a, long long b)
@@ -55,7 +55,7 @@ namespace Combinatorics
 			}
 			denominatorProduct *= denomCount;
 			numeratorProduct *=  numCount;
-			long long gcdCommonFactor = gcd(denominatorProduct, numeratorProduct);
+			const long long gcdCommonFactor = gcd(denominatorProduct, numeratorProduct);
 			denominatorProduct /= gcdCommonFactor;
 			numeratorProduct /= gcdCommonFactor;
 		}
@@ -73,7 +73,7 @@ namespace Combinatorics
 			throw std::invalid_argument("Combinatorics::permutations - The value of r cannot be greater than n");
 		}
 		long long permutations = 1;
-		for (long long int numeratorCount = n; numeratorCount >= (n - r + 1); numeratorCount--)
+		for (int numeratorCount = n; numeratorCount >= (n - r + 1); numeratorCount--)
 		{
 			//TODO: Convert to limits
 			if ((LLONG_MAX / n) < permutations)
